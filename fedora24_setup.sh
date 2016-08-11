@@ -79,6 +79,18 @@ dkms
 kernel-PAE-devel
 )
 
+## KVM
+kvm=(
+qemu-kvm
+qemu-img 
+virt-manager 
+libvirt 
+libvirt-python 
+libvirt-client
+virt-install 
+virt-viewer
+)
+
 ## UTILS
 utilz=(
 gnome-tweak-tool
@@ -204,6 +216,17 @@ function install_flash()
     echo -e "\e[1;32m Done ! \e[0m"
 }
 
+function install_kvm() {
+    echo -e "\e[1;32m Installing KVM ... \e[0m"
+    dnf groupinstall -y "Virtualization"
+    for i in "${kvm[@]}"
+    do
+        dnf install $i -y &> /dev/null; echo "Installing Deps ...."
+    done
+    echo -e "\e[1;32m Done ! \e[0m"
+}
+
+
 function install_spotify()
 {
     echo -e "\e[1;32m Installing Spotify ... \e[0m"
@@ -218,7 +241,7 @@ while true
 do
     clear
     echo "Choose an Item ... "
-    echo "1: VirtualBox (5.0)"
+    echo "1: VirtualBox 5.0"
     echo "2: System Utilities"
     echo "3: Audio/Video Encoders"
     echo "4: Zip Utils"
@@ -226,6 +249,7 @@ do
     echo "6: Fedy"
     echo "7: Flash Plugin"
     echo "8: Spotify"
+    echo "9: KVM"
     echo "0: Exit"
     read -sn1
     case "$REPLY" in
@@ -237,6 +261,7 @@ do
         6) install_fedy;;
         7) install_flash;;
         8) install_spotify;;
+        9) install_kvm;;
         0) exit 0;;
     esac
     read -n1 -p "Press any key to continue"
