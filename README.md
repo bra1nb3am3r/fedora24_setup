@@ -11,6 +11,7 @@ You just need to run the script as root (or sudoer user). tools include:
  - Java Browser Plugins 
  - Fedy (https://www.linuxhelp.com/to-install-fedy-for-easy-tweaking/)
  - Flash Plugin
+ - KVM
  - Spotify Client
 
 The script is modular that means you can chose what you want to be installed.
